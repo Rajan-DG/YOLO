@@ -1,1 +1,49 @@
-# CI/CD workflow will be configured in the next module
+on:
+  push:
+      branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repositrory
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.SECRET_YEAH_1 }}
+        aws-secret-access-key: ${{ secrets.SECRET_YEAH_2 }}
+        aws-region: us-east-1
+
+    - name: Set up terraform
+      uses: hashicorp/setup-terraform@v2
+
+    - name: terraform Init
+      run:  |
+        terraform init
+      env:
+        aws-access-key-id: ${{ secrets.SECRET_YEAH_1 }}
+        aws-secret-access-key: ${{ secrets.SECRET_YEAH_2 }}
+
+    - name: terraform validate
+      run: |
+        terraform validate
+        
+
+    - name: terraform plan
+      run: |
+        terraform plan
+      env:
+        aws-access-key-id: ${{ secrets.SECRET_YEAH_1 }}
+        aws-secret-access-key: ${{ secrets.SECRET_YEAH_2 }}
+
+    - name: terraform apply
+      run: |
+        terraform apply -auto-approve
+      env:
+        aws-access-key-id: ${{ secrets.SECRET_YEAH_1 }}
+        aws-secret-access-key: ${{ secrets.SECRET_YEAH_2 }}
+
+ #CI/CD workflow will be configured in the next module
