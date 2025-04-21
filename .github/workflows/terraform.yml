@@ -1,3 +1,5 @@
+name: Deploy the AWS infrastructure
+
 on:
   push:
       branches: [main]
