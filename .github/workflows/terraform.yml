@@ -48,4 +48,8 @@ jobs:
         aws-access-key-id: ${{ secrets.YOLO_KEY_ID }}
         aws-secret-access-key: ${{ secrets.YOLO_ACCESS_KEY }}
 
+    - name: terraform destroy
+      run: |
+        terraform destroy -auto-approve
+
  #CI/CD workflow will be configured in the next module
