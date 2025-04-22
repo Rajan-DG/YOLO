@@ -40,12 +40,10 @@ jobs:
     - name: terraform plan
       run: |
         terraform plan
-      env:
 
     - name: terraform apply
       run: |
         terraform apply -auto-approve
-      env:
 
     - name: terraform destroy
       run: |
