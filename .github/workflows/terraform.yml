@@ -27,9 +27,6 @@ jobs:
     - name: terraform Init
       run:  |
         terraform init
-      env:
-        aws-access-key-id: ${{ secrets.YOLO_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.YOLO_ACCESS_KEY }}
 
     - name: terraform fmt
       run: |
@@ -44,15 +41,11 @@ jobs:
       run: |
         terraform plan
       env:
-        aws-access-key-id: ${{ secrets.YOLO_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.YOLO_ACCESS_KEY }}
 
     - name: terraform apply
       run: |
         terraform apply -auto-approve
       env:
-        aws-access-key-id: ${{ secrets.YOLO_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.YOLO_ACCESS_KEY }}
 
     - name: terraform destroy
       run: |
